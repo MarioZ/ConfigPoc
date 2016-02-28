@@ -3,18 +3,26 @@ Any configuration element can define a value that references its existing values
 
 For example consider the following custom configuration section:
 ```xml
-<userSettings firstName="John"
-              lastName="Doe"
-              fullName="Mr. $(firstName) $(lastName)">
+<userSection application="FOO"
+             version="1.0">
+  <user name="$(firstName) $(lastName)"
+        firstName="John"
+        lastName="Doe"
+        welcomeMessage="Hello $(name), welcome to $(application) v$(version)!" />
 </userSettings>
 ```
-The result of *`fullName`* value is:
+The result of *`welcomeMessage`* value is:
 ```
-Mr. John Doe
+Hello John Doe, welcome to FOO v1.0!
 ```
-**Ideas:**
-- [ ] Add support for inheriting from ConfigurationSectionGroup
-- [ ] Add support for Standard and Custom Numeric Format Strings  
-      *Suggestion: `$(placeholderName \# #,##0.00)`*
-- [ ] Add support for Standard and Custom Date and Time Format Strings  
-      *Suggestion: `$(placeholderName \@ MMMM dd, yyyy)`*
+**TODO list:**
+- [x] Add support for inheriting value from ConfigurationElement.
+- [x] Add support for inheriting value from ConfigurationElementCollection.
+- [x] Add support for inheriting value from ConfigurationSection.
+- [x] Add support for Standard and Custom Numeric Format Strings.  
+      *Implementation: `$(placeholderName \# #,##0.00)`*
+- [x] Add support for Standard and Custom Date and Time Format Strings.  
+      *Implementation: `$(placeholderName \@ MMMM dd, yyyy)`*
+- [ ] Add support for inheriting value from ConfigurationSectionGroup.
+- [ ] Add support for inheriting value from ConfigurationSectionGroupCollection.
+- [ ] **Feel free to contact me for any additional suggestions you may have!**

@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -39,17 +41,22 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigurationBase\ConfigurationElementBase.cs" />
-    <Compile Include="ConfigurationBase\ConfigurationElementBaseCollection.cs" />
-    <Compile Include="ConfigurationBase\ConfigurationSectionBase.cs" />
-    <Compile Include="ConfigurationBase\IInheritedConfiguration.cs" />
-    <Compile Include="ConfigurationBase\InheritedConfigurationExtension.cs" />
+    <Compile Include="BaseConfiguration\ConfigurationElementBase.cs" />
+    <Compile Include="BaseConfiguration\ConfigurationElementBaseCollection.cs" />
+    <Compile Include="BaseConfiguration\ConfigurationSectionBase.cs" />
+    <Compile Include="BaseConfiguration\IInheritedConfiguration.cs" />
+    <Compile Include="BaseConfiguration\InheritedConfigurationExtension.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserConfiguration\MessagesElement.cs" />
+    <Compile Include="UserConfiguration\UserCollection.cs" />
+    <Compile Include="UserConfiguration\UserElement.cs" />
+    <Compile Include="UserConfiguration\UserSection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup />
