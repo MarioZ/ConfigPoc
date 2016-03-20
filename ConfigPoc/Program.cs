@@ -10,10 +10,7 @@ namespace ConfigPoc
             UserSection userSettings = (UserSection)ConfigurationManager.GetSection("userSection");
 
             foreach (var user in userSettings.Users)
-                Console.WriteLine("{1}{0}{2}{0}",
-                    Environment.NewLine,
-                    user.Messages.Welcome,
-                    user.Messages.Info);
+                Console.WriteLine($"{user.Messages.Welcome}\n{user.Messages.Info}\n");
 
             Console.Read();
         }

@@ -7,10 +7,10 @@ namespace ConfigPoc
         where T : ConfigurationElementBase, new()
     {
         public IInheritedConfiguration Parent { get; set; }
-        protected override ConfigurationElement CreateNewElement() { return new T(); }
-        protected override object GetElementKey(ConfigurationElement element) { return ((T)element).Key; }
-        protected string GetValue(string name) { return this.GetInheritedValue(name); }
-        public T this[int index] { get { return this.GetElement(index); } }
+        protected override ConfigurationElement CreateNewElement() => new T();
+        protected override object GetElementKey(ConfigurationElement element) => ((T)element).Key;
+        protected string GetValue(string name) => this.GetInheritedValue(name);
+        public T this[int index] => this.GetElement(index);
 
         public new IEnumerator<T> GetEnumerator()
         {
@@ -28,7 +28,7 @@ namespace ConfigPoc
             return element;
         }
 
-        bool IInheritedConfiguration.ContainsValueCore(string name) { return base.Properties.Contains(name); }
-        object IInheritedConfiguration.GetValueCore(string name) { return base[name]; }
+        bool IInheritedConfiguration.ContainsValueCore(string name) => base.Properties.Contains(name);
+        object IInheritedConfiguration.GetValueCore(string name) => base[name];
     }
 }

@@ -40,7 +40,7 @@ namespace ConfigPoc
                     parentElement = parentElement.Parent;
                 }
                 while (string.IsNullOrEmpty(inheritedValue) && parentElement != null);
-                
+
                 inheritedValue = FormatInheritedValue(inheritedValue, placeholder);
                 value = value.Replace(placeholder.Content, inheritedValue);
             }
@@ -71,7 +71,6 @@ namespace ConfigPoc
 
         private enum FormatType
         {
-            None = 0,
             Numeric = '#',
             DateAndTime = '@'
         }
@@ -84,18 +83,18 @@ namespace ConfigPoc
             public PlaceholderInfo(Match match)
             {
                 this.content = match.Value;
-                this.name = match.Groups["Name"].Value;
-                this.format = match.Groups["Format"].Value;
+                this.name = match.Groups[nameof(this.Name)].Value;
+                this.format = match.Groups[nameof(this.Format)].Value;
 
-                string type = match.Groups["FormatType"].Value;
+                string type = match.Groups[nameof(this.FormatType)].Value;
                 if (!string.IsNullOrEmpty(type))
                     this.formatType = (FormatType)type[0];
             }
 
-            public string Content { get { return this.content; } }
-            public string Name { get { return this.name; } }
-            public string Format { get { return this.format; } }
-            public FormatType FormatType { get { return this.formatType; } }
+            public string Content => this.content;
+            public string Name => this.name;
+            public string Format => this.format;
+            public FormatType FormatType => this.formatType;
         }
     }
 }
