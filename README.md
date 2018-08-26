@@ -1,28 +1,31 @@
-This project is a proof of concept for achieving reusing (or better said inheriting) of configuration values in custom section.  
-Any configuration element can define a value that references its existing values and/or values that any of its parent configuration elements have.
+﻿This project is a proof-of-concept (POC) for a read-only **app.config** elements inheritance in a custom configuration section.
 
-For example consider the following custom configuration section:
+The goal was to achieve reusing of existing configuration properties inside another configuration property; any configuration element should be able to define placeholders in its property's value that would reference its existing properties and/or properties that any of its parent configuration elements have.
+
+The idea was inspired by MSBuild's properties and items placeholders (e.g., **$(Platform)** and **@(Compile)** placeholders).
+
+For example, consider the following custom configuration section:
+
 ```xml
-<userSection application="FOO"
-             version="1.0">
-  <user name="$(firstName) $(lastName)"
-        firstName="John"
-        lastName="Doe"
-        welcomeMessage="Hello $(name), welcome to $(application) v$(version)!" />
-</userSettings>
+<UserSettings Application="MY APP"
+              Version="1.0">
+  <User FullName="$(FirstName) $(LastName)"
+        FirstName="John"
+        LastName="Doe"
+        WelcomeMessage="Hello $(FullName), welcome to $(Application) v$(Version)!" />
+</UserSettings>
 ```
-The result of *`welcomeMessage`* value is:
+
+The result of `WelcomeMessage` property is:
+
 ```
-Hello John Doe, welcome to FOO v1.0!
+Hello John Doe, welcome to MY APP v1.0!
 ```
-**TODO list:**
-- [x] Add support for inheriting value from ConfigurationElement.
-- [x] Add support for inheriting value from ConfigurationElementCollection.
-- [x] Add support for inheriting value from ConfigurationSection.
-- [x] Add support for Standard and Custom Numeric Format Strings.  
-      *Implementation: `$(placeholderName \# #,##0.00)`*
-- [x] Add support for Standard and Custom Date and Time Format Strings.  
-      *Implementation: `$(placeholderName \@ MMMM dd, yyyy)`*
-- [ ] Add support for inheriting value from ConfigurationSectionGroup.
-- [ ] Add support for inheriting value from ConfigurationSectionGroupCollection.
-- [ ] **Feel free to contact me for any additional suggestions you may have!**
+
+**Notes:**
+- ☑︎ Added support for inherited values from `ConfigurationElement`.
+- ☑︎ Added support for inherited values from `ConfigurationElementCollection`.
+- ☑︎ Added support for inherited values from `ConfigurationSection`.
+- ☑︎ Added support for global values from `appSettings`.
+- ☑︎ Added support for Standard and Custom Numeric Format, e.g. `$(placeholderName \# #,##0.00)`.
+- ☑︎ Added support for Standard and Custom Date and Time Format, e.g. `$(placeholderName \@ MMMM dd, yyyy)`.
