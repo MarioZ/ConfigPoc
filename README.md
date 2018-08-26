@@ -1,8 +1,7 @@
-﻿This project is a proof-of-concept (POC) for a read-only **app.config** elements inheritance in a custom configuration section.
+This project is a proof-of-concept (POC) for a read-only **app.config** elements inheritance in a custom configuration section.  
+Inspired by MSBuild's properties and items placeholders (e.g., **$(Platform)** and **@(Compile)** placeholders).
 
 The goal was to achieve reusing of existing configuration properties inside another configuration property; any configuration element should be able to define placeholders in its property's value that would reference its existing properties and/or properties that any of its parent configuration elements have.
-
-The idea was inspired by MSBuild's properties and items placeholders (e.g., **$(Platform)** and **@(Compile)** placeholders).
 
 For example, consider the following custom configuration section:
 
